@@ -1,10 +1,8 @@
+// from data.js
 var tableData = data;
 
 var tbody = d3.select("tbody");
 
-data.forEach(function(tableData) {
-  console.log(tableData);
-});
 
 var submit = d3.select("#filter-btn");
 
@@ -23,6 +21,25 @@ submit.on("click", function() {
       cell.text(value);
     });
   });
+
+
+function buildTable(ufodata){
+  //Clear out existing data
+  tbody.html("")
+  // for each row in the obeject tableData append a table row(tr) within the html tbody
+  ufodata.forEach(x=> {
+      var row = tbody.append("tr");
+      // append the value of each object to a table data(td) row
+      Object.values(x).forEach((value)=>{
+          var cell = row.append('td').text(value);
+      })
+  });
+
+}
+//initialize table
+buildTable(tableData);
+
 });
+
 
 
